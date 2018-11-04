@@ -1,0 +1,325 @@
+\documentclass[12pt,landscape]{article}
+    \usepackage{multicol}
+    \usepackage{calc}
+    \usepackage{ifthen}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage[landscape]{geometry}
+    
+    % To make this come out properly in landscape mode, do one of the following
+    % 1.
+    %  pdflatex latexsheet.tex
+    %
+    % 2.
+    %  latex latexsheet.tex
+    %  dvips -P pdf  -t landscape latexsheet.dvi
+    %  ps2pdf latexsheet.ps
+    
+    
+    % If you're reading this, be prepared for confusion.  Making this was
+    % a learning experience for me, and it shows.  Much of the placement
+    % was hacked in; if you make it better, let me know...
+    
+    
+    % 2008-04
+    % Changed page margin code to use the geometry package. Also added code for
+    % conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+    % for the suggestions.
+    
+    % 2006-08
+    % Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+    
+    
+    % To Do:
+    % \listoffigures \listoftables
+    % \setcounter{secnumdepth}{0}
+    
+    
+    % This sets page margins to .5 inch if using letter paper, and to 1cm
+    % if using A4 paper. (This probably isn't strictly necessary.)
+    % If using another size paper, use default 1cm margins.
+    \geometry{top=1cm,left=1cm,right=1cm,bottom=1cm}
+    
+    % Turn off header and footer
+    \pagestyle{empty}
+     
+    
+    % Redefine section commands to use less space
+    \makeatletter
+    \renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                    {2ex plus -.5ex minus -.2ex}%
+                                    {0.5ex plus .2ex}%x
+                                    {\normalfont\small\bfseries}}
+    \renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                    {2ex plus -.5ex minus -.2ex}%
+                                    {0.5ex plus .2ex}%
+                                    {\normalfont\footnotesize\bfseries}}
+    \renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                    {-1ex plus -.5ex minus -.2ex}%
+                                    {1ex plus .2ex}%
+                                    {\normalfont\tiny\bfseries}}
+    \makeatother
+    
+    % Define BibTeX command
+    \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+        T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+    % Don't print section numbers
+    \setcounter{secnumdepth}{0}
+    
+    
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{0pt plus 0.5ex}
+
+    \newcommand{\norm}[1]{\vert\vert #1 \vert\vert}
+    %\DeclareMathOperator{\tg}{tg}
+    
+    % -----------------------------------------------------------------------
+    
+    \begin{document}
+    
+    \raggedright
+    \footnotesize
+    \begin{tabular}{@{}p{\linewidth / 4}
+                    @{}p{\linewidth / 4}
+                    @{}p{\linewidth / 4}
+                    @{}p{\linewidth / 4}@{}}
+    
+    \begin{center}
+         \large{\textbf{Formulari C\`{a}lcul 2}}\\
+         \tiny{\'{U}ltima actualitzaci\'{o}: \today}
+    \end{center}
+    
+    
+    \section{Corbes}
+    
+    \begin{tabular}{@{}p{\linewidth}@{}}
+    
+    \textbullet Long. i param. de l'arc \\
+    \hspace{0.5em}
+    $Ex.: r(t) = (\cos t, \sin t, t)$ \\
+    \hspace{0.5em}
+    $Ex.: r'(t) = (-\sin t, cos t, 1)$ \\
+    \hspace{0.5em}
+    $Longitud = s(t) = \int_{a}^{t} \norm{r'(t)} dt$ \\
+    \hspace{0.5em}
+    $t(s), u(s) = r(t(s)) \rightarrow \norm{u'(s)} = 1$ \\
+    \\
+    
+    \textbullet Triede de Frenet \\
+    \hspace{0.5em} 
+    $r(t) \to r'(t) \to r''(t) \to r'''(t)$ \\
+    \hspace{0.5em}
+    $\vec{T} = \frac{r'(t)}{\norm{r'(t)}}$ \\
+    \hspace{0.5em}
+    $\vec{N} = \frac{(r'(t) \times r''(t)) \times r'(t)}{\norm{(r'(t) \times r''(t)) \times r'(t)}}$ \\
+    \hspace{0.5em}
+    $\vec{B} = \frac{r'(t) \times r''(t)}{\norm{r'(t) \times r''(t)}}$ \\ 
+    \\
+    
+    \textbullet Curvatura i Torsio \\
+    \hspace{0.5em} 
+    $\kappa(t) = \frac{\norm{r'(t) \times r''(t)}}{\norm{r'(t)}^{3}}$ \\
+    \hspace{0.5em}
+    $\tau(t) = \frac{r'(t) \cdot (r''(t) \times r'''(t))}{\norm{r'(t) \times r''(t)}^{2}}$ \\
+    \\
+
+    \textbullet Pla que conte una corba \\
+    \hspace{0.5em} 
+    $r(t), t \rightarrow P$ \\
+    \hspace{0.5em} 
+    $(x,y,z) = P + \lambda\vec{T}(t) + \mu\vec{N}(t)$ \\
+    \\
+
+    \textbullet Recta normal \\
+    \hspace{0.5em} 
+    $r(t), t \rightarrow P$ \\
+    \hspace{0.5em} 
+    $(x,y,z) = P + \lambda\vec{N}(t)$ \\
+    \\
+    
+    \end{tabular}
+    \vspace{-1.5em}
+    
+    % SECOND COLUMN PAGE TABLE
+    &
+    
+    \section{n-variables}
+    
+    \begin{tabular}{@{}p{\linewidth}@{}}
+    
+    \textbullet Linealitzaci\'{o}, pla tangent \\
+    $$
+    \nabla f(x,y) = \begin{pmatrix}
+    \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \\
+    \end{pmatrix}
+    $$
+    $$
+    z = f(\alpha) + \nabla f(\alpha)\begin{pmatrix}
+    x - \alpha_{x} \\
+    y - \alpha_{y}
+    \end{pmatrix}
+    $$
+
+    Ex.:
+    \hspace{0.5em}
+    $f(x,y) = x^{2}y - x, \alpha = (1,2)$ \\
+    \hspace{0.5em}
+    $$\nabla f(x,y) = \begin{pmatrix}
+    2xy -1 & x^{2} \\
+    \end{pmatrix}
+    $$
+    \hspace{0.5em}
+    $$
+    z = 1 + \begin{pmatrix}
+    3 & 1 \\
+    \end{pmatrix}
+    \hspace{0.5em}
+    \begin{pmatrix}
+    x - 1 \\
+    y - 2
+    \end{pmatrix}
+    $$
+    \hspace{0.5em} 
+    $ z = 1 + 3(x - 1) + (y - 2)$ \\
+    \hspace{0.5em} 
+    $ z = 3x + y - 4 \leftarrow lineal!$ \\
+    Es equacio del pla tangent a la\\
+    grafica de f al punt (1,2) \\
+    \\
+
+    \textbullet Derivades Direccionals \\
+    $\frac{\partial f}{\partial v}(a) = \nabla f(a) \cdot v$ \\
+    \\
+
+    \textbullet Regla de la cadena \\
+    Ex.: \\
+    \hspace{0.5em} 
+    $f(x,y) = (xy, x^{2}, x-y)$ \\
+    \hspace{0.5em}
+    $g(x,y,z) = (xyz, \sin y)$ \\
+    \hspace{0.5em}
+    $g \circ f(x,y) = g(f(x,y))$ \\
+    \hspace{0.5em}
+    $g(f(x,y))= (xyx^{2}(x-y), \sin x^{2})$ \\
+    \\
+
+    
+    
+    \end{tabular}
+    \vspace{-1.5em}
+    
+    % THIRD COLUMN PAGE TABLE
+    &
+    \section{n-variables}
+
+    \begin{tabular}{@{}p{\linewidth}@{}}
+    
+    \textbullet Punts critics \\
+    Ex.: \\
+    \hspace{0.5em}
+    $f(x,y) = x^{2}-xy+y^{2}+3x-2y+1$ \\
+    \hspace{0.5em}
+    $\frac{\partial f}{\partial x}(x,y) = 2x-y+3=0$ \\
+    \hspace{0.5em}
+    $\frac{\partial f}{\partial y}(x,y) = -x+2y-2=0$ \\
+    $$
+    Hf(a) = \begin{pmatrix}
+    \frac{\partial^{2}f}{\partial x^{2}}(a) & \frac{\partial^{2}f}{\partial y\partial x}(a) \\
+    \frac{\partial^{2}f}{\partial x \partial y}(a) & \frac{\partial^{2}f}{\partial y^{2}}(a) 
+    \end{pmatrix}
+    $$
+    \hspace{0.5em}
+    $det(Hf(a)) > 0, \frac{\partial^{2}f}{\partial x^{2}}(a) > 0 \rightarrow$ \\
+    \hspace{0.5em}
+    $f(a)$ min. relatiu \\
+    \hspace{0.5em}
+    $det(Hf(a)) > 0, \frac{\partial^{2}f}{\partial x^{2}}(a) < 0 \rightarrow$ \\
+    \hspace{0.5em}
+    $f(a)$ max. relatiu \\
+    \hspace{0.5em}
+    $det(Hf(a)) < 0 \rightarrow f(a)$ punt sella \\
+    \hspace{0.5em}
+    $det(Hf(a)) = 0 \rightarrow$ cal estudi \\
+    \\
+    
+    \end{tabular}
+    \vspace{-1.5em}
+    
+    % FOURTH COLUMN PAGE TABLE
+    &
+    
+    \section{Derivades}
+    
+    \begin{tabular}{@{}p{\linewidth}@{}}
+    
+    \textbullet Basic \\
+    \hspace{0.5em} 
+    $ y = ku \to y' = ku', k \in \mathbb{R}$ \\
+    \hspace{0.5em} 
+    $ y = u \pm v \to y' = u' \pm v'$ \\
+    \hspace{0.5em} 
+    $ y = u \cdot v \to y' = u'v + uv'$ \\
+    \hspace{0.5em} 
+    $ y = \frac{u}{v} \to y' = \frac{u'v - uv'}{v^{2}}$ \\
+    \hspace{0.5em} 
+    $ [u(v)]' \to u'(v)v'$
+    \\
+    \\
+
+    \textbullet Constant \\
+    \hspace{0.5em} 
+    $ y = k \to y' = 0$ 
+    \\
+    \\
+    
+    \textbullet Identitat \\
+    \hspace{0.5em} 
+    $y = x \to y' = 1$ 
+    \\
+    \\
+
+    \textbullet Potencials \\
+    \hspace{0.5em} 
+    $y = u^{n} \to y' = nu^{n-1}u'$ \\
+    \hspace{0.5em} 
+    $y = \sqrt{u} \to y' = \frac{u'}{2\sqrt{u}}$ \\
+    \hspace{0.5em} 
+    $y = \sqrt[n]{u} \to y' = \frac{u'}{n\sqrt[n]{u^{n-1}}}$
+    \\
+    \\
+
+    \textbullet Exponencials \\
+    \hspace{0.5em} 
+    $y = e^{u} \to y' = u'e^{u}$ \\
+    \hspace{0.5em} 
+    $y = a^{u} \to y' = u'a^{u} \ln a$ 
+    \\
+    \\
+
+    \textbullet Logaritmiques \\
+    \hspace{0.5em} 
+    $y = \ln u \to y' = \frac{u'}{u}$ \\
+    \hspace{0.5em} 
+    $y = \log_{a} u \to y' = \frac{u'}{u}\frac{1}{\ln a}$
+    \\
+    \\
+
+    \textbullet Trigonometriques \\
+    \hspace{0.5em} 
+    $y = \sin u \to y' = u'\cos u$ \\
+    \hspace{0.5em} 
+    $y = \cos u \to y' = -u'\sin u$ \\
+    \hspace{0.5em} 
+    $y = \tan u \to y' = \frac{u'}{\cos^{2} u} = u'(1 + \tan^{2}u)$
+    \\
+    \\
+    
+    \end{tabular}
+    \vspace{-1.5em}
+    
+    
+    \end{tabular}
+    \vspace{-1.5em}
+    \end{document}
+    
